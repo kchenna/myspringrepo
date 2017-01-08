@@ -28,9 +28,9 @@ public class HelloController {
         
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public ResponseEntity download() throws IOException {
-        String filePath = "http://www.isai.online/4256s5f46ht4he4r6/2016/Bairavaa/Azhagiya Soodana Poovey.mp3";
-        InputStream inputStream = new FileInputStream(new File(filePath));
-        InputStreamResource inputStreamResource = new InputStreamResource(inputStream);
+        String filePath = "http://www.isai.online/4256s5f46ht4he4r6/2016/Bairavaa/Azhagiya%20Soodana%20Poovey.mp3";
+//        InputStream inputStream = new FileInputStream(new File(filePath));
+        InputStreamResource inputStreamResource = new InputStreamResource(new URL(filePath).openStream());
         HttpHeaders headers = new HttpHeaders();
         headers.setContentLength(Files.size(Paths.get(filePath)));
         return new ResponseEntity(inputStreamResource, headers, HttpStatus.OK);
